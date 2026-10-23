@@ -21,7 +21,7 @@ app.use(express.json());
 
 app.get('/', (req, res) => res.json({ status: 'API running' }));
 app.use('/api/auth', authLimiter, require('./routes/authRoutes'));
-
+app.use('/api/transactions', require('./routes/transactionRoutes'));
 app.use(notFound);
 app.use(errorHandler);
 
