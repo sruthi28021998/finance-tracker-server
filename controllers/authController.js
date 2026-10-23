@@ -19,6 +19,10 @@ exports.register = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error('Password must be at least 6 characters');
   }
+  if (!/^\S+@\S+\.\S+$/.test(email)) {
+    res.status(400);
+    throw new Error('Enter a valid email');
+  }
   if (await User.findOne({ email: email.toLowerCase() })) {
     res.status(409);
     throw new Error('Email already registered');
